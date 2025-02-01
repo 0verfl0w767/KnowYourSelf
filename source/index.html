@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KnowYourself</title>
+    <link rel="stylesheet" type="text/css" href="/main.css">
+  </head>
+  <body>
+    <h1>KnowYourself</h1>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="검색..." />
+      <button id="searchButton">🔍</button>
+    </div>
+    <div class="loading" id="loadingMessage"><img src="https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-05-37_512.gif" height="48" /></div>
+    <div class="recommended-keywords" id="recommendedKeywords"></div>
+    <div class="words-container" id="wordsContainer"></div>
+    <div class="common-points-container" id="commonPointsContainer">
+      <span class="chatgpt-label">ChatGPT-4o</span>
+      <div id="commonPointsContent"></div>
+    </div>
+    <div class="results-container" id="resultsContainer"></div>
+    <div class="ad-container">
+      <div class="ad right" id="keywordAd1"></div>
+      <div class="ad left" id="keywordAd2"></div>
+    </div>
+    <div class="copyright">
+      (C) 2025 SYU KR. (KIM SANG YUN)
+    </div>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" id="closeModal">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+        <table id="keywordsTable">
+          <thead>
+            <tr>
+              <th>키워드</th>
+              <th>빈도수</th>
+            </tr>
+          </thead>
+          <tbody id="keywordsBody">
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="/keyword.js"></script>
+    <script type="text/javascript" src="/main.js"></script>
+  </body>
+</html>

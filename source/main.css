@@ -1,0 +1,329 @@
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css);
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  font-weight: 800;
+  font-family: "NanumSquare", sans-serif;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #2c3e50;
+  margin: 50px 0;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.search-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  max-width: 400px;
+  padding: 12px 20px;
+  font-size: 1em;
+  border: 2px solid #007bff;
+  border-radius: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+input[type="text"]:focus {
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+  border-color: #0056b3;
+}
+
+#searchButton {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  margin-left: 10px;
+  display: none;
+}
+
+.loading {
+  display: none;
+  font-size: 1.2em;
+  color: #007bff;
+  text-align: center;
+}
+
+.words-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.word {
+  display: inline-block;
+  font-size: 1.5em;
+  color: #fff;
+  margin: 5px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #007bff, #00d1ff);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.word:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.results-container {
+  margin-top: 20px;
+  width: 90%;
+  /*max-width: 600px;*/
+  position: relative;
+  z-index: 1;
+}
+
+.job-listing {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s forwards;
+}
+
+.job-listing h3 {
+  color: #34495e;
+  font-size: 1.8em;
+  margin: 0;
+}
+
+.job-listing p {
+  color: #555;
+  margin: 5px 0;
+  font-size: 10pt;
+  line-height: 1.5;
+}
+
+.common-points-container {
+    position: relative;
+    padding: 20px;
+    border: 1px solid #007bff;
+    border-radius: 8px;
+  	width: 80%;
+    max-height: 400px;
+    overflow-y: auto;
+    display: none;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.common-points-container h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.5em;
+}
+
+.common-points-container p {
+    line-height: 1.6;
+    color: #555;
+}
+
+.common-points-container .chatgpt-label {
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.common-points-container:hover {
+    border-color: #0056b3;
+    background-color: #f1faff;
+}
+
+.chatgpt-label {
+  position: sticky; /* 부모 요소를 기준으로 절대 위치 설정 */
+  top: 1px;
+  left: 1px;
+  background-color: rgba(0, 154, 255, 0.2); /* 반투명 배경색 */
+  padding: 5px; /* 패딩 */
+  border-radius: 5px; /* 모서리 둥글게 */
+  font-weight: bold; /* 글자 두껍게 */
+  color: #333; /* 글자 색상 */
+  font-size: 12px; /* 글자 크기 */
+  z-index: 1; /* z-index 추가: 다른 요소 위에 표시 */
+}
+
+/* 스크롤바 스타일 */
+.common-points-container::-webkit-scrollbar {
+    width: 8px; /* 스크롤바 너비 */
+}
+
+.common-points-container::-webkit-scrollbar-thumb {
+    background-color: #007bff; /* 스크롤바 색상 */
+    border-radius: 4px; /* 스크롤바 모서리 둥글게 */
+}
+
+.common-points-container::-webkit-scrollbar-track {
+    background: #f1f1f1; /* 스크롤바 배경 */
+    border-radius: 4px; /* 트랙 모서리 둥글게 */
+}
+
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ad-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  height: 100px;
+}
+
+.ad {
+  font-size: 2em;
+  color: #b3b3b3;
+  white-space: nowrap;
+  position: absolute;
+}
+
+.ad.right {
+  animation: moveRight 30s linear infinite;
+  top: 20px;
+}
+
+.ad.left {
+  animation: moveLeft 30s linear infinite;
+  top: 60px;
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes moveLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.5em;
+  }
+
+  .word {
+    font-size: 1.2em;
+  }
+}
+
+.copyright {
+  margin-top: auto;
+  padding: 20px 0;
+  font-size: 0.9em;
+  color: #7f8c8d;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/*.common-points-container p {
+  color: #555;
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 5px 0;
+  background: #eaf3ff;
+  padding: 10px;
+  border-left: 5px solid #007bff;
+  border-radius: 5px;
+}*/
+
+.link {
+  color: #555;
+  margin: 10px;
+  font-weight: bold;
+  text-decoration: none;
+}
+#tips {
+  font-weight: bold;
+}
+.recommended-keywords {
+  font-size: 0.8em;
+  color: #555;
+  /*max-width: 600px;*/
+  text-align: center;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  /*max-width: 500px;*/
+  text-align: center;
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #007bff;
+  color: white;
+}
